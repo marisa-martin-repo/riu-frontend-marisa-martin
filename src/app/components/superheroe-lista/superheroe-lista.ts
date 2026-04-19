@@ -25,7 +25,7 @@ export class SuperheroeLista {
   columnaTabla: string[] = ['id', 'nombre', 'contacto', 'descripcion', 'superpoder','operacion'];
   dataSource = new MatTableDataSource<SuperHeroe>(ELEMENT_DATA);
   valorBuscado: string;
-  itemVacio: SuperHeroe = {id: 0, nombre: '', contacto: 0, descripcion: '', superpoder: ''};
+  superheroeVacio: SuperHeroe = {id: 0, nombre: '', contacto: 0, descripcion: '', superpoder: ''};
   readonly dialogOperacion = inject(MatDialog);
   private snackBarRespuesta = inject(MatSnackBar);
   
@@ -42,13 +42,14 @@ export class SuperheroeLista {
   editar(item: SuperHeroe) {
     const dialogRespuesta = this.dialogOperacion.open(SuperheroeEdicion, {
       width: '600px',
-      height: '400px',
+      height: '500px',
       data: item
     });
 
     dialogRespuesta.afterClosed().subscribe(result => {
       if (result !== undefined && result !== '') {
         // Llamar al servicio Editar/Añadir
+        console.log('Resultado: ', result);
         this.snackBarRespuesta.open('Superhéroe modificado', '', {duration: 1000});
       }
     });

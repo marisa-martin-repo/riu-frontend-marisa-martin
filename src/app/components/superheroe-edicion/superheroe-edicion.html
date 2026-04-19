@@ -1,8 +1,29 @@
 <h2 mat-dialog-title>{{ dataSuperheroe().nombre !="" ? 'Editar' : 'Añadir' }} superhéroe</h2>
 <mat-dialog-content>
-    ¿Querés editar/añadir el superhéroe {{ dataSuperheroe().nombre}}?
+  <form class="example-form" [formGroup]="edicionForm">    
+    <mat-form-field class="quarter-width">
+      <mat-label>Id</mat-label>
+      <input matInput disabled value="{{dataSuperheroe().id}}">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput required="true" formControlName="nombre" [maxLength]="20">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="descripcion"></textarea>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Superpoder</mat-label>
+      <input matInput type="text" [maxLength]="30" placeholder="Ej. Puede volar" formControlName="superpoder"/>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Contacto</mat-label>
+      <input matInput type="text" soloNumeros [maxLength]="10" formControlName="contacto"/>
+    </mat-form-field>
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button matButton mat-dialog-close>Cancelar</button>
-  <button matButton mat-dialog-close [mat-dialog-close]="dataSuperheroe()" cdkFocusInitial>Aceptar</button>
+  <button matButton mat-dialog-close [mat-dialog-close]="dataSuperheroeEditado" (click)="onGuardar()" [disabled]="edicionForm.invalid">Aceptar</button>
 </mat-dialog-actions>
