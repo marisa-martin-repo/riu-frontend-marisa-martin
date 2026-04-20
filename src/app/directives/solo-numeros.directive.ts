@@ -2,9 +2,10 @@ import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angu
 
 @Directive({
   selector: 'input[soloNumeros]',
+  standalone: true
 })
 
-export class SoloNumeros {
+export class SoloNumerosDirective {
    @Output() valueChange = new EventEmitter()
 
     constructor(private elementRef: ElementRef) {

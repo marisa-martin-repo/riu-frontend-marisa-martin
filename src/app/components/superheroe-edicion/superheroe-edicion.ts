@@ -12,25 +12,28 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { SuperHeroe } from '../../interfaces/superheroe';
-import { SoloNumeros } from "../../directives/solo-numeros";
+import { SuperHeroeInterface } from '../../interfaces/superheroe.interface';
+import { SoloNumerosDirective } from "../../directives/solo-numeros.directive";
+import { SoloMayusculasDirective } from "../../directives/solo-mayusculas.directive";
+import { SUPERHEROE_DATA, SUPERHEROE_VACIO } from '../../constants/superheroe.constants';
 
 @Component({
   selector: 'app-superheroe-edicion',
   templateUrl: './superheroe-edicion.html',
   styleUrl: './superheroe-edicion.css',
-  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, FormsModule, MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent, SoloNumeros],
+  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, FormsModule, MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent, SoloNumerosDirective, SoloMayusculasDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class SuperheroeEdicion {
 
   readonly dialogRespuesta = inject(MatDialogRef<SuperheroeEdicion>);
-  readonly data = inject<SuperHeroe>(MAT_DIALOG_DATA);
+  readonly data = inject<SuperHeroeInterface>(MAT_DIALOG_DATA);
   readonly dataSuperheroe = model(this.data);
-  public dataSuperheroeEditado: SuperHeroe = {id: 0, nombre: '', contacto: 0, descripcion: '', superpoder: ''};
+  public dataSuperheroeEditado: SuperHeroeInterface = SUPERHEROE_VACIO;
   edicionForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {    
     this.edicionForm = this.fb.group({
       id: [this.dataSuperheroe().id],
       nombre: [this.dataSuperheroe().nombre, [Validators.required, Validators.maxLength(20)]],
@@ -38,8 +41,10 @@ export class SuperheroeEdicion {
       contacto: [this.dataSuperheroe().contacto, [Validators.maxLength(10)]],
       superpoder: [this.dataSuperheroe().superpoder, Validators.maxLength(30)]
     });
-  }
 
+    this.edicionForm.get('id')?.disable();
+  }
+  
   onNoClick(): void {
     this.dialogRespuesta.close();
   }

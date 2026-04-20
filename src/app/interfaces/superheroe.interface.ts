@@ -1,4 +1,4 @@
-export interface SuperHeroe {
+export interface SuperHeroeInterface {
     id: number,
     nombre: string,
     contacto: number

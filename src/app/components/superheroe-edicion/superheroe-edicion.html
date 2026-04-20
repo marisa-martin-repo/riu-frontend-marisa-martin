@@ -3,11 +3,11 @@
   <form class="example-form" [formGroup]="edicionForm">    
     <mat-form-field class="quarter-width">
       <mat-label>Id</mat-label>
-      <input matInput disabled value="{{dataSuperheroe().id}}">
+      <input matInput formControlName="id">
     </mat-form-field>
     <mat-form-field class="full-width">
       <mat-label>Nombre</mat-label>
-      <input matInput required="true" formControlName="nombre" [maxLength]="20">
+      <input matInput required="true" soloMayusculas formControlName="nombre" [maxLength]="20">
     </mat-form-field>
     <mat-form-field class="full-width">
       <mat-label>Descripción</mat-label>
