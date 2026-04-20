@@ -1,33 +1,33 @@
 
-<div class="search-container">
-  <div class="search-text">
-    <mat-form-field>
-      <mat-label>Buscar superhéroe</mat-label>
-      <input matInput type="text" [(ngModel)]="valorBuscado">
-      @if (valorBuscado) {
-        <button matSuffix matIconButton aria-label="Borrar" (click)="limpiar()">
-          <mat-icon>close</mat-icon>
-        </button>
-      }
-    </mat-form-field>
-  </div>
-  <div class="search-option">
-    <mat-button-toggle-group [(ngModel)]="itemBuscado">
-      <mat-button-toggle value="nombre">Nombre</mat-button-toggle>
-      <mat-button-toggle value="id">Id</mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
-  <div class="search-button">
-    <button matMiniFab (click)="buscar()">
-      <mat-icon>search</mat-icon>
-    </button>
-    <button matMiniFab (click)="agregar(superheroeVacio)">
-      <mat-icon>add</mat-icon>
-    </button>
+<div class="contenedor">
+  <h1>Listado de Superhéroes</h1>
+  <div class="search-container">
+    <div class="search-text">
+      <mat-form-field>
+        <mat-label>Buscar superhéroe</mat-label>
+        <input matInput type="text" [(ngModel)]="valorBuscado">
+        @if (valorBuscado) {
+          <button matSuffix matIconButton aria-label="Borrar" (click)="limpiar()">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
     </div>
-</div>
-
-<div class="mat-elevation-z8">
+    <div class="search-option">
+      <mat-button-toggle-group [(ngModel)]="itemBuscado">
+        <mat-button-toggle value="nombre">Nombre</mat-button-toggle>
+        <mat-button-toggle value="id">Id</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="search-button">
+      <button matMiniFab (click)="buscar()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button matMiniFab (click)="agregar(superheroeVacio)">
+        <mat-icon>add</mat-icon>
+      </button>
+      </div>
+  </div>
   <table mat-table [dataSource]="dataSource">
 
     <!-- Id -->

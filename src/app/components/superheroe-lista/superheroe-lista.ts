@@ -49,7 +49,7 @@ export class SuperheroeLista {
   }
 
   obtenerInfo(): SuperHeroeInterface[] {
-    return this.superheroeService.obtenerInfo();
+    return this.superheroeService.buscarTodos();
   }
 
   agregar(item: SuperHeroeInterface) {
@@ -99,14 +99,11 @@ export class SuperheroeLista {
   }
 
   buscar() {
-    if (this.itemBuscado == 'id') {
-      const idBuscado = parseInt(this.valorBuscado);
-      //servicio BuscarPorId
-    } else {
-      const nombreBuscado = this.valorBuscado.trim();
-      //servicio BuscarPorNombre
-    }
-
+    const textoIngresado = this.valorBuscado.trim();
+    if (textoIngresado === '') this.superheroeService.buscarTodos();
+    this.dataSource.data = (this.itemBuscado == 'id') ? 
+                            this.superheroeService.buscarPorId(parseInt(textoIngresado)) : 
+                            this.superheroeService.buscarPorNombre(textoIngresado);
   }
 
   limpiar() {

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SuperHeroeInterface } from '../interfaces/superheroe.interface';
-import { MatTableDataSource } from '@angular/material/table';
 import { SUPERHEROE_DATA } from '../constants/superheroe.constants';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,21 +11,20 @@ export class SuperheroeService {
   
   constructor() {}
 
-  obtenerInfo(): SuperHeroeInterface[] {
-    return this.dataSourceService;
-  }
-
   generarId(): number {
     return Math.max(...this.dataSourceService.map(sh => sh.id)) + 1;
   }
 
-  buscarPorId(id: number) {
-    
+  buscarTodos(): SuperHeroeInterface[] {
+    return this.dataSourceService;
   }
 
-  
-  buscarPorNombre(nombre: string) {
-    
+  buscarPorId(id: number): SuperHeroeInterface[] {
+    return this.dataSourceService.filter(sh => sh.id === id);
+  }
+
+  buscarPorNombre(nombre: string): SuperHeroeInterface[] {
+    return this.dataSourceService.filter(sh => sh.nombre.toLowerCase().includes(nombre.toLowerCase()));
   }
 
   borrar(id: number): SuperHeroeInterface[] {
@@ -35,13 +32,13 @@ export class SuperheroeService {
     return this.dataSourceService;
   }
 
-  editar(item: SuperHeroeInterface): SuperHeroeInterface[]  {
+  editar(item: SuperHeroeInterface): SuperHeroeInterface[] {
     this.dataSourceService = this.dataSourceService.map((sh) => sh.id === item.id ? { ...sh, ...item } : sh);
     return this.dataSourceService;
   }
 
-  agregar(item: SuperHeroeInterface): SuperHeroeInterface[]  {
-    this.dataSourceService.push(item);
+  agregar(item: SuperHeroeInterface): SuperHeroeInterface[] {
+    this.dataSourceService.push({id: item.id, nombre: item.nombre, contacto: item.contacto, descripcion: item.descripcion, superpoder: item.superpoder});
     return this.dataSourceService;
   }
 }
