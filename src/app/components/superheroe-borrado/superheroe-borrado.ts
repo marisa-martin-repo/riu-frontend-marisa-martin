@@ -8,7 +8,7 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { SuperHeroe } from '../../interfaces/superheroe';
+import { SuperHeroeInterface } from '../../interfaces/superheroe.interface';
 
 @Component({
   selector: 'app-superheroe-borrado',
@@ -21,7 +21,7 @@ import { SuperHeroe } from '../../interfaces/superheroe';
 export class SuperheroeBorrado {
 
   readonly dialogRespuesta = inject(MatDialogRef<SuperheroeBorrado>);
-  readonly data = inject<SuperHeroe>(MAT_DIALOG_DATA);
+  readonly data = inject<SuperHeroeInterface>(MAT_DIALOG_DATA);
   readonly id = model(this.data.id);
 
   onNoClick(): void {

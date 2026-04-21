@@ -1,24 +1,46 @@
+.contenedor {
+    width: 90%;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.search-view {
+    display: flex;
+    flex-direction: column; /* Alinea los hijos en fila (por defecto) */
+    justify-content: space-between; /* Espaciado entre elementos */
+    gap: 10px;     
+}
+
 .flex-container {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: end;
+  gap: 20px;
 }
 
 .search-container {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
     width: 100%;
-    height: 20vh;
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+    padding: 20px;
 }
 
 .search-text {
-    width: 100%;
+    width: 30%;
+    align-content: center;
+}
+
+.search-option {
+    width: 14%;
+    padding-top: 10px;
 }
 
 .search-button {
+    width: 10%;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
 }
 
 .full-width {
