@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, model, ViewChild } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, model, signal, ViewChild } from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
@@ -32,6 +32,7 @@ export class SuperheroeLista {
   superheroeVacio: SuperHeroeInterface = {...SUPERHEROE_VACIO};
   readonly dialogOperacion = inject(MatDialog);
   private snackBarRespuesta = inject(MatSnackBar);
+  nuevoId = signal(0);
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -42,6 +43,7 @@ export class SuperheroeLista {
 
   ngOnInit(): void {
     this.dataSource.data = this.obtenerInfo();
+    this.nuevoId.update(id => id = this.superheroeService.generarId());
   }
 
   ngAfterViewInit() {
@@ -53,7 +55,8 @@ export class SuperheroeLista {
   }
 
   agregar(item: SuperHeroeInterface) {
-    item.id = this.superheroeService.generarId();
+    item.id = this.nuevoId();
+    this.nuevoId.update(id => id = id + 1);
     
     const dialogRespuesta = this.dialogOperacion.open(SuperheroeEdicion, {
       width: '600px',
