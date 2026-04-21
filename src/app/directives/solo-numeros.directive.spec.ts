@@ -3,7 +3,6 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SoloNumerosDirective } from './solo-numeros.directive';
 
-// 1. Creamos un Host Component para probar la directiva
 @Component({
   standalone: true,
   imports: [SoloNumerosDirective],
@@ -24,7 +23,7 @@ describe('SoloNumerosDirective', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TestHostComponent, SoloNumerosDirective] // Ambos son standalone
+      imports: [TestHostComponent, SoloNumerosDirective] 
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestHostComponent);

@@ -15,7 +15,7 @@ import {
 import { SuperHeroeInterface } from '../../interfaces/superheroe.interface';
 import { SoloNumerosDirective } from "../../directives/solo-numeros.directive";
 import { SoloMayusculasDirective } from "../../directives/solo-mayusculas.directive";
-import { SUPERHEROE_DATA, SUPERHEROE_VACIO } from '../../constants/superheroe.constants';
+import { SUPERHEROE_VACIO } from '../../constants/superheroe.constants';
 
 @Component({
   selector: 'app-superheroe-edicion',
@@ -57,4 +57,6 @@ export class SuperheroeEdicion {
       this.dataSuperheroeEditado.superpoder = this.edicionForm.get('superpoder')?.value;
   }
 }
+
+export { ReactiveFormsModule };
 

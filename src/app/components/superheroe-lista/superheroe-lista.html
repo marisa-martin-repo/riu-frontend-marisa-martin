@@ -82,4 +82,6 @@
                  showFirstLastButtons
                  aria-label="Elegí superhéroes para ver por página">
   </mat-paginator>
+
+  <h3 style="color: red;" [hidden]="dataSource.data.length > 0">No existen resultados para la búsqueda</h3>
 </div>

@@ -9,5 +9,5 @@ import { SuperheroeLista } from "./components/superheroe-lista/superheroe-lista"
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('riu-mindata');
+  protected readonly title = signal('Challenge RIU-Mindata');
 }
