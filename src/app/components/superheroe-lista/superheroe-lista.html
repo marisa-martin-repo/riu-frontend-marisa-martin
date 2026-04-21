@@ -3,7 +3,7 @@
   <h1>Listado de Superhéroes</h1>
   <div class="search-container">
     <div class="search-text">
-      <mat-form-field>
+      <mat-form-field class="full-width">
         <mat-label>Buscar superhéroe</mat-label>
         <input matInput type="text" [(ngModel)]="valorBuscado">
         @if (valorBuscado) {
@@ -26,7 +26,7 @@
       <button matMiniFab (click)="agregar(superheroeVacio)">
         <mat-icon>add</mat-icon>
       </button>
-      </div>
+    </div>
   </div>
   <table mat-table [dataSource]="dataSource">
 
