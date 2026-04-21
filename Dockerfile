@@ -1,10 +1,11 @@
 
 # Etapa 1: Construcción (Build)
-FROM node:lts-alpine as build
+FROM node:20-alpine AS build
+RUN mkdir -p /app
 WORKDIR /app
-COPY package*.json ./
+COPY package*.json /app/
 RUN npm install
-COPY . .
+COPY . /app/
 RUN npm run build --prod
 
 # Etapa 2: Servidor (Nginx)
@@ -13,5 +14,5 @@ FROM nginx:alpine
 COPY --from=build /app/dist/riu-mindata /usr/share/nginx/html
 # Opcional: Copiar configuración personalizada de nginx
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# EXPOSE 80
+# CMD ["nginx", "-g", "daemon off;"]
